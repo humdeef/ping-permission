@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ping</groupId>
+        <artifactId>ping-common</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>ping-id-spring-boot-starter</artifactId>
+    <name>ping-id-spring-boot-starter</name>
+    <description>分布式 ID starter：内置雪花算法（Snowflake），无需外部 ID 组件</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ping</groupId>
+            <artifactId>ping-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>

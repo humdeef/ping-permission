@@ -1,0 +1,245 @@
+# ============================================================
+# ping-permission 一键启动编排
+#
+#   ./start.sh            构建（Maven + Vite）并启动全部服务
+#   ./start.sh --skip-build  跳过构建，直接用已有产物启动
+#   ./start.sh down       停止并移除容器
+#   ./start.sh logs       查看日志
+#
+# 宿主机端口默认避开常用端口，避免与本机 MySQL/Redis/Nacos 冲突：
+#   前端        http://localhost:5173
+#   网关        http://localhost:9999
+#   Nacos 控制台 http://localhost:18080  (Nacos 3.x 控制台在根路径)
+#   MySQL       localhost:13306 (root/123456)
+#   Redis       localhost:16379
+# 需要修改时复制 .env.example 为 .env 后调整。
+#
+# 环境由 APP_ENV 控制（dev/test/prod，默认 dev）。Nacos 的配置数据由
+# init-sql/nacos-mysql.sql 在 MySQL 首次启动时导入，业务服务再通过 spring.config.import 加载。
+#
+# 镜像 tag 由 IMAGE_TAG 控制：./start.sh 会取根 pom.xml 的 <revision> 赋值，
+# 因此镜像 tag 与 Maven 版本、发布 tag 天然一致。直接执行 docker compose 时为 local。
+# ============================================================
+
+name: ping-permission
+
+x-common-env: &common-env
+  TZ: Asia/Shanghai
+  # 环境标识：决定加载 application-{env}.yml / {service}-{env}.yml，并作为服务发现命名空间
+  APP_ENV: ${APP_ENV:-dev}
+  NACOS_HOST: nacos
+  NACOS_PORT: "8848"
+  # 默认关闭鉴权，留空即可；若开启 Nacos 鉴权，请在 .env 中设置 nacos/nacos
+  NACOS_USERNAME: ${NACOS_USERNAME:-}
+  NACOS_PASSWORD: ${NACOS_PASSWORD:-}
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+  # Swagger UI 里 "Try it out" 的基地址（浏览器可达的网关地址）。
+  # 改了 GATEWAY_HOST_PORT 或通过域名/反向代理访问时，需要同步修改。
+  PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:9999}
+
+services:
+  # ---------------- 基础设施 ----------------
+  mysql:
+    image: mysql:8.0
+    container_name: ping-mysql
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ping}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+08:00
+    ports:
+      - "${MYSQL_HOST_PORT:-13306}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # 业务库 ping 由各服务启动时的 Flyway 迁移创建（见 resources/db/migration）；
+      # 这里只需保证 Nacos 库在 Nacos 启动前就绪。
+      - ./init-sql/nacos-mysql.sql:/docker-entrypoint-initdb.d/01-nacos-mysql.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 40s
+    networks:
+      - ping-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: ping-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_HOST_PORT:-16379}:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    networks:
+      - ping-net
+
+  nacos:
+    image: nacos/nacos-server:v3.1.1
+    container_name: ping-nacos
+    restart: unless-stopped
+    environment:
+      MODE: standalone
+      # Nacos 使用 MySQL 存储（表结构与初始数据由 mysql 容器启动时导入）
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: "3306"
+      MYSQL_SERVICE_DB_NAME: ${NACOS_DB_NAME:-nacos_config}
+      MYSQL_SERVICE_USER: ${NACOS_DB_USER:-root}
+      MYSQL_SERVICE_PASSWORD: ${NACOS_DB_PASSWORD:-${MYSQL_ROOT_PASSWORD:-123456}}
+      MYSQL_SERVICE_DB_PARAM: "characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai"
+      # 本地开发关闭鉴权；但 3.x 镜像启动脚本仍要求提供 token / identity
+      NACOS_AUTH_ENABLE: "false"
+      NACOS_AUTH_TOKEN: ${NACOS_AUTH_TOKEN:-cGluZy1wZXJtaXNzaW9uLWxvY2FsLWRldi10b2tlbi0zMi1ieXRlcy0=}
+      NACOS_AUTH_IDENTITY_KEY: ${NACOS_AUTH_IDENTITY_KEY:-serverIdentity}
+      NACOS_AUTH_IDENTITY_VALUE: ${NACOS_AUTH_IDENTITY_VALUE:-security}
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      PREFER_HOST_MODE: hostname
+    ports:
+      - "${NACOS_HOST_PORT:-18848}:8848"          # HTTP API
+      - "${NACOS_GRPC_HOST_PORT:-19848}:9848"     # gRPC（客户端长连接）
+      - "${NACOS_CONSOLE_HOST_PORT:-18080}:8080"  # 控制台
+    volumes:
+      - nacos-data:/home/nacos/data
+      - nacos-logs:/home/nacos/logs
+    # Nacos 依赖 MySQL 中的 nacos_config 表，必须等 MySQL 初始化完成后启动
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8848/nacos/v1/ns/operator/metrics"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 40s
+    networks:
+      - ping-net
+
+  # ---------------- 业务服务 ----------------
+  user-service:
+    build:
+      context: ./ping-user
+    image: ping/user-service:${IMAGE_TAG:-local}
+    container_name: ping-user-service
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ping}
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      # Dubbo 向 Nacos 注册的地址；容器内使用服务名即可被同网络的其他容器解析
+      DUBBO_HOST: user-service
+      JAVA_XMX: 768m
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8101/actuator/health/readiness"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 60s
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      nacos:
+        condition: service_healthy
+    networks:
+      - ping-net
+
+  order-service:
+    build:
+      context: ./examples/ping-order
+    image: ping/order-service:${IMAGE_TAG:-local}
+    container_name: ping-order-service
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      MYSQL_HOST: mysql
+      MYSQL_PORT: "3306"
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ping}
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
+      DUBBO_HOST: order-service
+      JAVA_XMX: 512m
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8102/actuator/health/readiness"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 60s
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      nacos:
+        condition: service_healthy
+    networks:
+      - ping-net
+
+  gateway:
+    build:
+      context: ./ping-gateway
+    image: ping/gateway-service:${IMAGE_TAG:-local}
+    container_name: ping-gateway
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+      JAVA_XMX: 512m
+    ports:
+      - "${GATEWAY_HOST_PORT:-9999}:9999"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8081/actuator/health/readiness"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 60s
+    depends_on:
+      nacos:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+    networks:
+      - ping-net
+
+  web:
+    build:
+      context: ./ping-web
+    image: ping/web:${IMAGE_TAG:-local}
+    container_name: ping-web
+    restart: unless-stopped
+    ports:
+      - "${WEB_HOST_PORT:-5173}:80"
+    depends_on:
+      gateway:
+        condition: service_healthy
+    networks:
+      - ping-net
+
+volumes:
+  mysql-data:
+  redis-data:
+  nacos-data:
+  nacos-logs:
+
+networks:
+  ping-net:
+    driver: bridge

@@ -1,0 +1,2 @@
+com.ping.log.config.BizTraceAutoConfiguration
+com.ping.log.config.BizTraceFeignAutoConfiguration

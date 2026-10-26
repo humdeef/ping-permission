@@ -1,0 +1,102 @@
+name: Bug 反馈
+description: 报告可以复现的问题（使用、配置、界面相关请先看模块 README 的「常见坑」）
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请尽量把信息填完整：缺少版本、日志或复现步骤的问题通常无法定位。
+
+        安全问题**不要**在这里提，请按仓库根目录的 `SECURITY.md` 私密报告。
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 已搜索现有 issue，确认没有重复
+          required: true
+        - label: 已阅读对应模块 README 的「常见坑」章节
+          required: true
+        - label: 这不是安全问题（安全问题请走私密渠道）
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本或提交
+      description: tag（如 v0.0.2）或 commit 短哈希
+      placeholder: v0.0.2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: 运行方式
+      options:
+        - ./start.sh（Docker Compose）
+        - 本地 Maven + 本地 MySQL/Redis/Nacos
+        - 本地 Maven + Docker 启动的基础设施
+        - 其他（在补充信息里说明）
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: 涉及模块
+      multiple: true
+      options:
+        - ping-gateway
+        - user-service
+        - examples/ping-order
+        - ping-common（Starter）
+        - ping-web（前端）
+        - 数据库迁移 / Flyway
+        - docker-compose / start.sh
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从启动到出错的完整步骤，包含具体请求、参数和账号角色
+      placeholder: |
+        1. ./start.sh
+        2. 用 admin 登录
+        3. GET /order/pc/orders
+        4. 返回 403
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 报错信息、HTTP 状态码、响应体；日志请去掉敏感信息后贴关键片段
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相关日志
+      description: 用 `docker compose logs --tail=200 <服务名>` 或 `./start.sh logs <服务名>` 获取
+      render: shell
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 配置差异（Nacos 改动、环境变量）、是否只在特定数据/角色下出现、尝试过的排查

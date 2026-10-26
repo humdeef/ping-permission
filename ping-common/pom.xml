@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ping</groupId>
+        <artifactId>ping-permission</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ping-common</artifactId>
+    <packaging>pom</packaging>
+    <name>ping-common</name>
+    <description>后端通用组件：核心模型与各 Spring Boot Starter</description>
+
+    <modules>
+        <module>ping-core</module>
+        <module>ping-web-spring-boot-starter</module>
+        <module>ping-data-scope-spring-boot-starter</module>
+        <module>ping-dubbo-spring-boot-starter</module>
+        <module>ping-log-spring-boot-starter</module>
+        <module>ping-id-spring-boot-starter</module>
+    </modules>
+</project>

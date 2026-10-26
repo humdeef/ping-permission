@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.ping</groupId>
+    <artifactId>ping-permission</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <name>ping-permission</name>
+    <description>Ping Permission：一套真正能二开的权限底座</description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!--
+        统一父工程：所有后端模块继承此 POM。
+        第三方依赖版本、Spring Boot / Spring Cloud BOM 均在此集中管理，子模块不再写 version。
+        ping-web（Vue）不是 Maven 模块，单独用 npm 构建。
+    -->
+    <modules>
+        <module>ping-common</module>
+        <module>ping-gateway</module>
+        <module>ping-user</module>
+        <!-- 示例业务模块：仅用于演示二开方式，可直接复制或删除 -->
+        <module>examples</module>
+    </modules>
+
+    <properties>
+        <!--
+            版本单一来源：pom、Docker 镜像 tag、发布 tag 都从这里取。
+            发布新版本只改这一行（以及 CHANGELOG），子模块通过 <parent><version>${revision}</version>
+            自动跟随，不再逐个修改。
+        -->
+        <revision>0.1.0</revision>
+        <!-- 说明：目前用的jdk21版本，国内主体还是以jdk17，jdk21版本为主，后续考虑升到jdk25 -->
+        <java.version>21</java.version>
+        <!-- JDK 23+ 默认不运行 classpath 上的注解处理器，显式开启以支持 Lombok -->
+        <maven.compiler.proc>full</maven.compiler.proc>
+        <jacoco.version>0.8.15</jacoco.version>
+        <flatten-maven-plugin.version>1.7.2</flatten-maven-plugin.version>
+
+        <!-- Spring -->
+        <!-- Spring Cloud 2025.1.2+ 起支持 Spring Boot 4.1.x；2025.1.4 为当前 2025.1 train 最新补丁 -->
+        <spring-cloud.version>2025.1.4</spring-cloud.version>
+        <!--
+            Spring Cloud Alibaba 官方矩阵仍写 2025.1.0.0 → Boot 4.0.x / Cloud 2025.1.0，
+            但 2025.1.0.0 是 2025.1 train 当前唯一版本（无更新补丁），且同属 2025.1 系列，
+            与本工程的 Cloud 2025.1.4 共用同一 BOM 基线；升级 Boot 4.1 后需由 CI 与 e2e 兜底验证。
+        -->
+        <spring-cloud-alibaba.version>2025.1.0.0</spring-cloud-alibaba.version>
+
+        <!-- 权限 / RPC / 持久化 -->
+        <sa-token.version>1.46.0</sa-token.version>
+        <dubbo.version>3.3.6</dubbo.version>
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
+
+        <!-- 工具 -->
+        <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
+        <feign-core.version>13.6</feign-core.version>
+
+        <!-- 可观测性 -->
+        <logstash-logback.version>8.1</logstash-logback.version>
+
+        <!-- 接口文档（3.x 才支持 Spring Boot 4，2.x 仅支持 Boot 3） -->
+        <springdoc.version>3.2.0</springdoc.version>
+        <!-- 仅注解（@Tag/@Operation），供不含 springdoc 依赖的业务模块编译使用 -->
+        <swagger-annotations.version>2.2.55</swagger-annotations.version>
+
+        <!-- Dubbo 序列化所需的旧命名空间 Jackson 2.x（Spring Boot 4 默认使用 Jackson 3） -->
+        <jackson2.version>2.21.8</jackson2.version>
+        <jackson2-annotations.version>2.21</jackson2-annotations.version>
+        <jackson2-jsr310.version>2.21.8</jackson2-jsr310.version>
+
+        <!-- 安全修复：覆盖传递依赖中的旧版本（Trivy 检查 HIGH/CRITICAL） -->
+        <bcprov.version>1.86</bcprov.version>
+        <httpcore5.version>5.4.4</httpcore5.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <gson.version>2.10.1</gson.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Cloud BOM -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 安全修复：Nacos / Spring Cloud Gateway 传递的旧版本 -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk18on</artifactId>
+                <version>${bcprov.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5-h2</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+
+            <!-- 接口文档：业务服务（Servlet/WebMVC）与网关（WebFlux）各用一套 starter -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations-jakarta</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+
+            <!-- 本工程模块 -->
+            <dependency>
+                <groupId>com.ping</groupId>
+                <artifactId>ping-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping</groupId>
+                <artifactId>ping-web-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping</groupId>
+                <artifactId>ping-data-scope-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping</groupId>
+                <artifactId>ping-dubbo-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping</groupId>
+                <artifactId>ping-log-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping</groupId>
+                <artifactId>ping-id-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ping.user</groupId>
+                <artifactId>user-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping.user</groupId>
+                <artifactId>user-auth</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping.user</groupId>
+                <artifactId>user-pc</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping.user</groupId>
+                <artifactId>user-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping.user</groupId>
+                <artifactId>user-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping.user</groupId>
+                <artifactId>user-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ping.order</groupId>
+                <artifactId>order-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ping.order</groupId>
+                <artifactId>order-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ping.gateway</groupId>
+                <artifactId>gateway-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Sa-Token -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-core</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot4-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-reactor-spring-boot4-starter</artifactId>
+                <version>${sa-token.version}</version>
+            </dependency>
+
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+            <!-- Nacos -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+            </dependency>
+
+            <!-- MyBatis-Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-jsqlparser</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!-- 工具 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>${feign-core.version}</version>
+            </dependency>
+
+            <!-- 可观测性 -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback.version}</version>
+            </dependency>
+
+            <!-- Dubbo 序列化依赖（固定版本） -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson2-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson2-jsr310.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- 覆盖率报告：verify 阶段在 target/site/jacoco 生成，CI 作为构建产物上传 -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 只统计业务代码：跳过 SQL 解析器生成的大方法，避免无意义的插桩告警 -->
+                            <excludes>
+                                <exclude>net.sf.jsqlparser.*</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+                让 ${revision} 在 install/deploy 时被解析成真实版本号：
+                子模块的 <parent><version>${revision}</version> 只在构建期有效，
+                写入本地仓库/发给下游的 POM 必须是具体版本，否则下游无法解析父工程。
+                resolveCiFriendliesOnly 只处理 revision / sha1 / changelist，其余 POM 内容原样保留。
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten-clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+                集成测试：*IT.java 由 failsafe 在 integration-test/verify 阶段执行，不进入 `mvn test`。
+                依赖 Docker（Testcontainers），无 Docker 的环境会被 disabledWithoutDocker 自动跳过。
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*IT.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!-- id 与 spring-boot-starter-parent 的默认执行合并，避免同一目标跑两遍 -->
+                        <id>default</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!--
+            阿里巴巴 Java 开发手册检查：mvn -Pali-p3c compile pmd:check
+            必须先 compile：单独跑 pmd:check 时 Maven 不会使用 reactor 的编译输出，
+            模块间依赖会去本地仓库找，干净环境（CI）里必然解析失败。
+        -->
+        <profile>
+            <id>ali-p3c</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <version>3.21.2</version>
+                        <configuration>
+                            <rulesets>
+                                <ruleset>rulesets/java/ali-comment.xml</ruleset>
+                                <ruleset>rulesets/java/ali-concurrent.xml</ruleset>
+                                <ruleset>rulesets/java/ali-constant.xml</ruleset>
+                                <ruleset>rulesets/java/ali-exception.xml</ruleset>
+                                <ruleset>rulesets/java/ali-flowcontrol.xml</ruleset>
+                                <ruleset>rulesets/java/ali-naming.xml</ruleset>
+                                <ruleset>rulesets/java/ali-oop.xml</ruleset>
+                                <ruleset>rulesets/java/ali-orm.xml</ruleset>
+                                <ruleset>rulesets/java/ali-other.xml</ruleset>
+                                <ruleset>rulesets/java/ali-set.xml</ruleset>
+                            </rulesets>
+                            <linkXRef>false</linkXRef>
+                            <printFailingErrors>true</printFailingErrors>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.alibaba.p3c</groupId>
+                                <artifactId>p3c-pmd</artifactId>
+                                <version>2.1.1</version>
+                            </dependency>
+                            <!-- PMD 6 内置的 ASM 无法读取 JDK 21 字节码（major version 65） -->
+                            <dependency>
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm</artifactId>
+                                <version>9.7.1</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

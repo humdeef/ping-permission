@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ping</groupId>
+        <artifactId>ping-permission</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.ping.user</groupId>
+    <artifactId>user</artifactId>
+    <packaging>pom</packaging>
+    <name>user</name>
+    <description>用户与权限服务</description>
+
+    <modules>
+        <module>user-common</module>
+        <module>user-auth</module>
+        <module>user-pc</module>
+        <module>user-app</module>
+        <module>user-client</module>
+        <module>user-service</module>
+    </modules>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ping.user.pc.mapper.SysApiWhitelistMapper">
+
+    <select id="search" resultType="com.ping.user.pc.entity.SysApiWhitelist">
+        SELECT * FROM sys_api_whitelist
+        <where>
+            <if test="path != null and path != ''">
+                AND path LIKE CONCAT('%', #{path}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

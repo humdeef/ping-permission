@@ -1,0 +1,4 @@
+pingUserContextConsumer=com.ping.dubbo.UserContextConsumerFilter
+pingUserContextProvider=com.ping.dubbo.UserContextProviderFilter
+pingBizTraceConsumer=com.ping.dubbo.BizTraceConsumerFilter
+pingBizTraceProvider=com.ping.dubbo.BizTraceProviderFilter

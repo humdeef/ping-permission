@@ -1,0 +1,160 @@
+name: CI
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Backend / mvn verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build and test
+        run: mvn -B -ntp verify
+
+      - name: Alibaba Java coding guidelines (p3c)
+        # 需要先 compile：单独 pmd:check 不会使用 reactor 的编译输出，多模块依赖会去本地仓库找
+        run: mvn -B -ntp -Pali-p3c compile pmd:check
+
+      - name: Upload test and coverage reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: backend-reports
+          if-no-files-found: ignore
+          path: |
+            **/target/surefire-reports/**
+            **/target/failsafe-reports/**
+            **/target/site/jacoco/**
+
+      - name: Publish test results
+        if: always()
+        # PR 来自 fork 时 GITHUB_TOKEN 只读，写 check 会失败；报告失败不影响门禁
+        continue-on-error: true
+        uses: mikepenz/action-junit-report@v6.6.1
+        with:
+          report_paths: |
+            **/target/surefire-reports/TEST-*.xml
+            **/target/failsafe-reports/TEST-*.xml
+          check_name: Backend test results
+          fail_on_failure: false
+          require_tests: false
+
+  e2e:
+    name: E2E / auth chain
+    runs-on: ubuntu-latest
+    # 单元/集成测试用 mock 和 Testcontainers 覆盖单服务行为；
+    # 这里启动真实的 Nacos + MySQL + Redis + 服务 + 网关，验证跨进程的鉴权链路：
+    # 登录签发 token → 网关接口权限（规则经 Dubbo 从 sys_api_resource 加载）
+    # → 服务端 @PreAuthorize → 数据权限。
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build backend artifacts
+        # 只需 jar（镜像直接 COPY target/*.jar，不在容器内构建）；
+        # Boot 4.1 起 -DskipTests 不再跳过测试的 AOT 处理，用 maven.test.skip 更彻底
+        run: mvn -B -ntp -Dmaven.test.skip=true package
+
+      - name: Resolve image tag
+        # 与 ./start.sh 同源：镜像 tag 取根 pom.xml 的 <revision>
+        run: echo "IMAGE_TAG=$(./start.sh version)" >> "$GITHUB_ENV"
+
+      - name: Start the stack
+        # 不启动 web：鉴权链路只到网关；前端构建由 frontend 任务负责
+        run: docker compose up -d --build mysql redis nacos user-service order-service gateway
+
+      - name: Run end-to-end auth cases
+        env:
+          # 冷启动要等 MySQL 初始化 → Nacos 导入配置 → 两个服务跑 Flyway → 网关加载权限规则，
+          # 超时给足，失败时的输出里已经包含各容器日志
+          E2E_READY_TIMEOUT: 420
+        run: bash e2e-auth.sh
+
+      - name: Container status
+        if: always()
+        run: docker compose ps
+
+      - name: Dump container logs
+        if: failure()
+        run: docker compose logs --no-color --tail=200 mysql redis nacos user-service order-service gateway
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
+
+  frontend:
+    name: Frontend / lint + build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ping-web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: ping-web/package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Lint
+        # 规则见 ping-web/eslint.config.js：只挡运行时错误与 Vue 常见坑，不检查排版
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  security:
+    name: Security / dependency scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Scan dependencies for HIGH/CRITICAL vulnerabilities
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          format: table
+          exit-code: '1'
+          skip-dirs: '**/node_modules,**/target,ping-web/dist'

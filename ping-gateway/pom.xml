@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ping</groupId>
+        <artifactId>ping-permission</artifactId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>com.ping.gateway</groupId>
+    <artifactId>ping-gateway</artifactId>
+    <packaging>pom</packaging>
+    <name>ping-gateway</name>
+    <description>Spring Cloud Gateway 网关：认证、鉴权、路由、链路追踪</description>
+
+    <modules>
+        <module>gateway-service</module>
+    </modules>
+</project>

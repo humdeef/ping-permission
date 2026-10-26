@@ -1,0 +1,32 @@
+# ============================================================
+# 启动引导配置：只保留服务名、Nacos 地址与配置导入。
+# 其余配置（端口/数据源/Redis/Dubbo/Sa-Token/Actuator 等）全部由 Nacos 下发：
+#   - application-${APP_ENV:dev}.yml                公共配置
+#   - ${spring.application.name}-${APP_ENV:dev}.yml 服务专属配置
+#
+# 配置存储：Nacos 使用 MySQL 存储，Docker 首次启动时由 init-sql/nacos-mysql.sql 导入；
+# 已有 Nacos 环境请在控制台按上述 dataId 维护配置。
+#
+# 切换环境：启动时指定 APP_ENV=dev|test|prod。
+# ============================================================
+spring:
+  application:
+    name: user-service
+  cloud:
+    nacos:
+      # Nacos 开启鉴权时才需要账号密码；未开启时留空可避免无意义的登录报错
+      username: ${NACOS_USERNAME:nacos}
+      password: ${NACOS_PASSWORD:nacos}
+      discovery:
+        server-addr: ${NACOS_HOST:localhost}:${NACOS_PORT:8848}
+        # 不同环境使用不同命名空间：dev / test / prod
+        namespace: ${APP_ENV:dev}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        # 配置中心命名空间：默认跟随 APP_ENV（未设置时为 dev）；
+        # 如需使用 public 命名空间，显式设置 NACOS_CONFIG_NAMESPACE=（空）
+        namespace: ${NACOS_CONFIG_NAMESPACE:${APP_ENV:dev}}
+  config:
+    import:
+      - nacos:application-${APP_ENV:dev}.yml
+      - nacos:${spring.application.name}-${APP_ENV:dev}.yml

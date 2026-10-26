@@ -1,0 +1,2 @@
+com.ping.web.config.CommonSecurityAutoConfiguration
+com.ping.web.config.AnnotatedApiAutoConfiguration

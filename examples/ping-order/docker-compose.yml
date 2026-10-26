@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  order:
+    image: 192.168.127.73:8600/public/order-service:v1.0.0
+    container_name: order
+    restart: always
+    deploy:
+      replicas: 3
+    # 把 8100 暴露
+    ports:
+      - "8100:8100"

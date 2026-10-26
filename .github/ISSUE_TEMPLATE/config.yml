@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全问题（请勿公开提问）
+    url: https://gitee.com/humdeef/ping-permission
+    about: 漏洞请按仓库根目录的 SECURITY.md 私密联系维护者，不要公开提交
+  - name: 使用与部署文档
+    url: https://gitee.com/humdeef/ping-permission/blob/develop/README.md
+    about: 环境要求、一键启动、Nacos 配置、接口文档与数据库迁移都在这份文档里
+  - name: 模块文档与常见坑
+    url: https://gitee.com/humdeef/ping-permission/tree/develop
+    about: 各模块 README 末尾的「常见坑」章节覆盖了大部分启动与鉴权问题

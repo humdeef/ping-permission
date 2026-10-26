@@ -1,0 +1,22 @@
+# 统一换行符：文本文件在仓库和工作区都存为 LF。
+# 避免 Windows 检出后 *.sh 变成 CRLF（报 "bash\r: No such file or directory"），
+# 以及 pom.xml 的 <revision> 末尾带上 \r，导致版本号和镜像 tag 异常。
+* text=auto eol=lf
+
+# Shell 脚本必须是 LF，否则 Git Bash / WSL 无法执行
+*.sh text eol=lf
+
+# Windows 批处理保持 CRLF（Maven Wrapper 的 mvnw.cmd 等）
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# 二进制文件不做换行转换，也不参与文本 diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.jar binary
+*.woff binary
+*.woff2 binary
+*.ttf binary

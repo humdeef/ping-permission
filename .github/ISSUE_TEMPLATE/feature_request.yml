@@ -1,0 +1,72 @@
+name: 功能建议
+description: 提出新能力或体验改进（先描述场景，再谈实现）
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先说明**要解决的问题**，再谈具体实现。方案可以讨论，场景越具体越容易被采纳。
+
+        改动范围较大时（新模块、新依赖、破坏性变更），维护者可能会先和你确认方向再开始写代码。
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 已搜索现有 issue 与 README，确认这不是已有能力
+          required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 类型
+      options:
+        - 权限 / 鉴权能力
+        - 数据权限
+        - 审计与会话
+        - 二开体验（模块骨架、Starter、示例）
+        - 构建 / 部署 / CI
+        - 前端（ping-web）
+        - 文档
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想解决什么问题
+      description: 你现在的做法是什么、哪里卡住了、影响多大
+      placeholder: |
+        我们的后台有多个业务线，希望部门数据范围能按业务线再细分；
+        现在只能靠角色 + 部门组合，配置量很大。
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望的方案
+      description: 接口、配置、数据结构的大致形态；有替代方案也一并说明
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 考虑过的替代方案
+      description: 包括你现在是怎么绕过去的
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影响面
+      description: 是否涉及对外接口、数据库结构、默认配置或破坏性变更
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充信息
+      description: 参考实现、相关 issue、截图或草图

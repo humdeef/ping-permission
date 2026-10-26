@@ -1,0 +1,761 @@
+.env.example
+  s_585e8db0324ab6::t_12f600fbec8111 1-37
+.gitattributes
+  s_585e8db0324ab6::t_8a97bbcf859d18 1-22
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_585e8db0324ab6::t_b2dddd9620f6f0 1-102
+.github/ISSUE_TEMPLATE/config.yml
+  s_585e8db0324ab6::t_f18db413fb16f0 1-11
+.github/ISSUE_TEMPLATE/feature_request.yml
+  s_585e8db0324ab6::t_fe79a59d62da01 1-72
+.github/PULL_REQUEST_TEMPLATE.md
+  s_585e8db0324ab6::t_8030ce1bfd0dfe 1-38
+.github/workflows/ci.yml
+  s_585e8db0324ab6::t_0f8b6d9152a7b4 1-160
+.gitignore
+  s_585e8db0324ab6::t_238f7dfc5ba916 1-46
+.mvn/wrapper/maven-wrapper.properties
+  s_585e8db0324ab6::t_63f8b77b7a51c5 1-3
+.trivyignore
+  s_585e8db0324ab6::t_0e5124d492469a 1-3
+CHANGELOG.md
+  s_585e8db0324ab6::t_e1a6f22a943932 1-74
+CODE_OF_CONDUCT.md
+  s_585e8db0324ab6::t_ae1eab1c61ff01 1-74
+CONTRIBUTING.md
+  s_585e8db0324ab6::t_4defdc1a626fd9 1-146
+LICENSE
+  s_585e8db0324ab6::t_aef01d79ecbfd6 1
+README.en.md
+  s_585e8db0324ab6::t_024a8d83c8c752 1-435
+README.md
+  s_585e8db0324ab6::t_8bb4a1bc310076 2-432
+SECURITY.md
+  s_585e8db0324ab6::t_052a537ce4e6dd 1-64
+ci.sh
+  s_585e8db0324ab6::t_8fad5a7b65b607 1-64
+docker-compose.yml
+  s_585e8db0324ab6::t_c693aeeb722a0c 1-245
+e2e-auth.sh
+  s_585e8db0324ab6::t_e422a95bfdc723 1-338
+examples/README.en.md
+  s_585e8db0324ab6::t_1407b8b20fff61 1-18
+examples/README.md
+  s_585e8db0324ab6::t_8e615a29a65342 1-18
+examples/ping-order/.dockerignore
+  s_585e8db0324ab6::t_3fe6baa3bbb24d 1-13
+examples/ping-order/.gitignore
+  s_585e8db0324ab6::t_03c8e10597fa10 1-39
+examples/ping-order/Dockerfile
+  s_585e8db0324ab6::t_aa79c4f011e8a7 1-17
+examples/ping-order/README.en.md
+  s_585e8db0324ab6::t_2f2f54225856bd 1-185
+examples/ping-order/README.md
+  s_585e8db0324ab6::t_f6daba70b36284 1-185
+examples/ping-order/docker-compose.yml
+  s_585e8db0324ab6::t_d71925955ec618 1-12
+examples/ping-order/order-client/.gitattributes
+  s_585e8db0324ab6::t_d180c24ec10c2a 1-2
+examples/ping-order/order-client/.gitignore
+  s_585e8db0324ab6::t_710b4ed548842f 1-33
+examples/ping-order/order-client/.mvn/wrapper/maven-wrapper.properties
+  s_585e8db0324ab6::t_ad35786dffe9fb 1-3
+examples/ping-order/order-client/README.en.md
+  s_585e8db0324ab6::t_4e9c354b28cfd6 1-83
+examples/ping-order/order-client/README.md
+  s_585e8db0324ab6::t_0c1d64216935dd 1-83
+examples/ping-order/order-client/mvnw
+  s_585e8db0324ab6::t_1658106133b4c7 1-295
+examples/ping-order/order-client/mvnw.cmd
+  s_585e8db0324ab6::t_08cf263bb1cc19 1-189
+examples/ping-order/order-client/pom.xml
+  s_585e8db0324ab6::t_d4834ba6fd8c83 1-21
+examples/ping-order/order-client/src/main/java/com/ping/order/client/dto/OrderDTO.java
+  s_585e8db0324ab6::t_596ee352c69162 1-21
+examples/ping-order/order-client/src/main/java/com/ping/order/client/spi/OrderDubboClient.java
+  s_585e8db0324ab6::t_ff4079129585b3 1-19
+examples/ping-order/order-service/.gitattributes
+  s_585e8db0324ab6::t_8f21adcf320caf 1-2
+examples/ping-order/order-service/.gitignore
+  s_585e8db0324ab6::t_0588135d3715e8 1-33
+examples/ping-order/order-service/.mvn/wrapper/maven-wrapper.properties
+  s_585e8db0324ab6::t_7236e66245828b 1-3
+examples/ping-order/order-service/README.en.md
+  s_585e8db0324ab6::t_598193679e8fad 1-279
+examples/ping-order/order-service/README.md
+  s_585e8db0324ab6::t_21824225c40251 1-279
+examples/ping-order/order-service/mvnw
+  s_585e8db0324ab6::t_b3791ae672ea7d 1-295
+examples/ping-order/order-service/mvnw.cmd
+  s_585e8db0324ab6::t_0bedcff08c787e 1-189
+examples/ping-order/order-service/pom.xml
+  s_585e8db0324ab6::t_bd7886347b11a1 1-213
+examples/ping-order/order-service/src/main/java/com/ping/order/OrderServiceApplication.java
+  s_585e8db0324ab6::t_27a53de767007e 1-21
+examples/ping-order/order-service/src/main/java/com/ping/order/config/AsyncExecutorConfig.java
+  s_585e8db0324ab6::t_2c3f56f35049ca 1-86
+examples/ping-order/order-service/src/main/java/com/ping/order/config/DubboPermissionProvider.java
+  s_585e8db0324ab6::t_ef6508a503cb16 1-47
+examples/ping-order/order-service/src/main/java/com/ping/order/config/MyBatisPlusConfig.java
+  s_585e8db0324ab6::t_4f8f851ffc3c03 1-71
+examples/ping-order/order-service/src/main/java/com/ping/order/config/OrderMetaObjectHandler.java
+  s_585e8db0324ab6::t_1fbbc7411d2dc5 1-75
+examples/ping-order/order-service/src/main/java/com/ping/order/controller/app/OrderAppController.java
+  s_585e8db0324ab6::t_4f5c1e31a6a9ad 1-131
+examples/ping-order/order-service/src/main/java/com/ping/order/controller/pc/OrderPcController.java
+  s_585e8db0324ab6::t_4c799d1a44e43e 1-118
+examples/ping-order/order-service/src/main/java/com/ping/order/controller/pc/OrderPcOrderController.java
+  s_585e8db0324ab6::t_8af427ef8ab572 1-96
+examples/ping-order/order-service/src/main/java/com/ping/order/entity/BizOrder.java
+  s_585e8db0324ab6::t_247b60566ae5fd 1-82
+examples/ping-order/order-service/src/main/java/com/ping/order/entity/BizOrderOperationLog.java
+  s_585e8db0324ab6::t_ed5b2b3e824dc7 1-57
+examples/ping-order/order-service/src/main/java/com/ping/order/mapper/BizOrderMapper.java
+  s_585e8db0324ab6::t_5353cdaaa72544 1-16
+examples/ping-order/order-service/src/main/java/com/ping/order/mapper/BizOrderOperationLogMapper.java
+  s_585e8db0324ab6::t_77a5dfa3aca7b0 1-12
+examples/ping-order/order-service/src/main/java/com/ping/order/model/CreateOrderRequest.java
+  s_585e8db0324ab6::t_a658c1f4e124c3 1-26
+examples/ping-order/order-service/src/main/java/com/ping/order/model/OrderNameResponse.java
+  s_585e8db0324ab6::t_1d125871c6ca56 1-18
+examples/ping-order/order-service/src/main/java/com/ping/order/model/OrderOperation.java
+  s_585e8db0324ab6::t_1d9c2bb4673199 1-19
+examples/ping-order/order-service/src/main/java/com/ping/order/model/OrderResponse.java
+  s_585e8db0324ab6::t_591872b0fb7026 1-67
+examples/ping-order/order-service/src/main/java/com/ping/order/model/OrderStatus.java
+  s_585e8db0324ab6::t_60652e9981556a 1-66
+examples/ping-order/order-service/src/main/java/com/ping/order/model/UpdateOrderRequest.java
+  s_585e8db0324ab6::t_b60be9cf5aba47 1-30
+examples/ping-order/order-service/src/main/java/com/ping/order/service/OrderDubboServiceImpl.java
+  s_585e8db0324ab6::t_d532ce8eb49606 1-19
+examples/ping-order/order-service/src/main/java/com/ping/order/service/OrderLocalService.java
+  s_585e8db0324ab6::t_142acaa2431279 1-28
+examples/ping-order/order-service/src/main/java/com/ping/order/service/OrderService.java
+  s_585e8db0324ab6::t_4f54080525f657 1-93
+examples/ping-order/order-service/src/main/java/com/ping/order/service/impl/OrderLocalServiceImpl.java
+  s_585e8db0324ab6::t_6c1de1481d282a 1-34
+examples/ping-order/order-service/src/main/java/com/ping/order/service/impl/OrderServiceImpl.java
+  s_585e8db0324ab6::t_11dadad75a6827 1-325
+examples/ping-order/order-service/src/main/resources/application.yml
+  s_585e8db0324ab6::t_96b61dac8c80cb 1-32
+examples/ping-order/order-service/src/main/resources/db/migration/V1__init_order_schema.sql
+  s_585e8db0324ab6::t_358c257d7fbbfb 1-60
+examples/ping-order/order-service/src/main/resources/logback.xml
+  s_585e8db0324ab6::t_40a40dd4395943 1-17
+examples/ping-order/order-service/src/test/java/com/ping/order/OrderServiceApplicationTests.java
+  s_585e8db0324ab6::t_c4854036f55eba 1-21
+examples/ping-order/order-service/src/test/java/com/ping/order/config/OrderMetaObjectHandlerTest.java
+  s_585e8db0324ab6::t_aa0d23bdcffa46 1-131
+examples/ping-order/order-service/src/test/java/com/ping/order/migration/OrderSchemaMigrationIT.java
+  s_585e8db0324ab6::t_bdafde8e493b2f 1-225
+examples/ping-order/order-service/src/test/java/com/ping/order/model/OrderStatusTest.java
+  s_585e8db0324ab6::t_3dc4f6b5bc6b99 1-67
+examples/ping-order/order-service/src/test/java/com/ping/order/service/impl/OrderServiceImplTest.java
+  s_585e8db0324ab6::t_25f64b3846a9cd 1-485
+examples/ping-order/order-service/src/test/java/com/ping/order/support/TableInfoTestSupport.java
+  s_585e8db0324ab6::t_b4fb714fb083f2 1-32
+examples/ping-order/order.sh
+  s_585e8db0324ab6::t_b4aca83bcb4f44 1-10
+examples/ping-order/pom.xml
+  s_585e8db0324ab6::t_b95e7a57596a7c 1-22
+examples/pom.xml
+  s_585e8db0324ab6::t_edf7a68a7a759b 1-21
+init-sql/nacos-mysql.sql
+  s_585e8db0324ab6::t_b3870781f59d9f 1-348
+mvnw
+  s_585e8db0324ab6::t_73b2a9bfe8c6bc 1-295
+mvnw.cmd
+  s_585e8db0324ab6::t_47bb9a480a9b28 1-189
+ping-common/README.en.md
+  s_585e8db0324ab6::t_12358c964347a8 1-156
+ping-common/README.md
+  s_585e8db0324ab6::t_0abd6ec8f504bb 1-156
+ping-common/ping-core/README.en.md
+  s_585e8db0324ab6::t_0da14f458ffdcf 1-300
+ping-common/ping-core/README.md
+  s_585e8db0324ab6::t_e8148551bda6af 1-300
+ping-common/ping-core/pom.xml
+  s_585e8db0324ab6::t_3780f0834defea 1-35
+ping-common/ping-core/src/main/java/com/ping/core/annotation/AppLoginOnlyApi.java
+  s_585e8db0324ab6::t_5dec08b805cd34 1-19
+ping-common/ping-core/src/main/java/com/ping/core/annotation/LoginOnlyApi.java
+  s_585e8db0324ab6::t_828743cf01e1d6 1-20
+ping-common/ping-core/src/main/java/com/ping/core/annotation/PublicApi.java
+  s_585e8db0324ab6::t_f5b609fe3c1477 1-19
+ping-common/ping-core/src/main/java/com/ping/core/context/OperatorType.java
+  s_585e8db0324ab6::t_054b3d5715c295 1-84
+ping-common/ping-core/src/main/java/com/ping/core/context/UserContext.java
+  s_585e8db0324ab6::t_84f17ad3d5fe4b 1-142
+ping-common/ping-core/src/main/java/com/ping/core/context/UserContextHolder.java
+  s_585e8db0324ab6::t_c33d106d713961 1-109
+ping-common/ping-core/src/main/java/com/ping/core/dto/ApiResponse.java
+  s_585e8db0324ab6::t_3cce681c756339 1-43
+ping-common/ping-core/src/main/java/com/ping/core/dto/PageResult.java
+  s_585e8db0324ab6::t_057315b0d087d8 1-33
+ping-common/ping-core/src/main/java/com/ping/core/id/DistributedIdGenerator.java
+  s_585e8db0324ab6::t_a2fb0de66bdf0d 1-20
+ping-common/ping-core/src/main/java/com/ping/core/security/PermissionProvider.java
+  s_585e8db0324ab6::t_eb869d6667a3a9 1-34
+ping-common/ping-core/src/main/java/com/ping/core/security/SecurityConstants.java
+  s_585e8db0324ab6::t_1c116a348ff8c9 1-33
+ping-common/ping-core/src/main/java/com/ping/core/security/StpAppUtil.java
+  s_585e8db0324ab6::t_c004ea68329689 1-55
+ping-common/ping-core/src/main/java/com/ping/core/trace/BizTraceIdGenerator.java
+  s_585e8db0324ab6::t_8a03e112effae7 1-20
+ping-common/ping-core/src/test/java/com/ping/core/context/UserContextTest.java
+  s_585e8db0324ab6::t_4c922d8769af81 1-98
+ping-common/ping-data-scope-spring-boot-starter/README.en.md
+  s_585e8db0324ab6::t_728981dd7b4c55 1-151
+ping-common/ping-data-scope-spring-boot-starter/README.md
+  s_585e8db0324ab6::t_6b8295d4958417 1-151
+ping-common/ping-data-scope-spring-boot-starter/pom.xml
+  s_585e8db0324ab6::t_d8129dde573013 1-53
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/annotation/DataScope.java
+  s_585e8db0324ab6::t_c04e6af01a8f39 1-75
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/annotation/IgnoreDataScope.java
+  s_585e8db0324ab6::t_2a762f1bcb1cf3 1-21
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/config/DataScopeAutoConfiguration.java
+  s_585e8db0324ab6::t_0408fc8e1a01e1 1-50
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/config/DataScopeProperties.java
+  s_585e8db0324ab6::t_31c5b9438d3f88 1-17
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/core/DataScopeContext.java
+  s_585e8db0324ab6::t_13213b4c09e3fb 1-74
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/core/DataScopeException.java
+  s_585e8db0324ab6::t_93c94a7645f16e 1-21
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/core/DataScopeInfo.java
+  s_585e8db0324ab6::t_7456df12e10c00 1-35
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/core/DataScopeProvider.java
+  s_585e8db0324ab6::t_3ec94f94c2728a 1-26
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/mybatis/DataScopeHandler.java
+  s_585e8db0324ab6::t_74a9d91cf6a8b7 1-196
+ping-common/ping-data-scope-spring-boot-starter/src/main/java/com/ping/data/scope/web/DataScopeContextFilter.java
+  s_585e8db0324ab6::t_4a2cdf359abacc 1-28
+ping-common/ping-data-scope-spring-boot-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  s_585e8db0324ab6::t_cfe0a71ef1e33c 1
+ping-common/ping-data-scope-spring-boot-starter/src/test/java/com/ping/data/scope/mybatis/DataScopeHandlerTest.java
+  s_585e8db0324ab6::t_d85c657d2eec52 1-285
+ping-common/ping-dubbo-spring-boot-starter/README.en.md
+  s_585e8db0324ab6::t_442dcc60dfc10e 1-181
+ping-common/ping-dubbo-spring-boot-starter/README.md
+  s_585e8db0324ab6::t_68b85dc727fbaf 1-181
+ping-common/ping-dubbo-spring-boot-starter/pom.xml
+  s_585e8db0324ab6::t_d0b79926181a96 1-29
+ping-common/ping-dubbo-spring-boot-starter/src/main/java/com/ping/dubbo/BizTraceConsumerFilter.java
+  s_585e8db0324ab6::t_3ec999dda5830c 1-36
+ping-common/ping-dubbo-spring-boot-starter/src/main/java/com/ping/dubbo/BizTraceProviderFilter.java
+  s_585e8db0324ab6::t_79ba45ee1a5de5 1-35
+ping-common/ping-dubbo-spring-boot-starter/src/main/java/com/ping/dubbo/UserContextConsumerFilter.java
+  s_585e8db0324ab6::t_085b74f304c126 1-56
+ping-common/ping-dubbo-spring-boot-starter/src/main/java/com/ping/dubbo/UserContextProviderFilter.java
+  s_585e8db0324ab6::t_e92c21e4585cf6 1-56
+ping-common/ping-dubbo-spring-boot-starter/src/main/resources/META-INF/dubbo/org.apache.dubbo.rpc.Filter
+  s_585e8db0324ab6::t_f0379bf54e623e 1-4
+ping-common/ping-id-spring-boot-starter/README.en.md
+  s_585e8db0324ab6::t_1c118f3533abb8 1-190
+ping-common/ping-id-spring-boot-starter/README.md
+  s_585e8db0324ab6::t_582f21734f5340 1-190
+ping-common/ping-id-spring-boot-starter/pom.xml
+  s_585e8db0324ab6::t_912a54a5ef4ca4 1-29
+ping-common/ping-id-spring-boot-starter/src/main/java/com/ping/id/DistributedIdAutoConfiguration.java
+  s_585e8db0324ab6::t_4d25bfe99b2715 1-60
+ping-common/ping-id-spring-boot-starter/src/main/java/com/ping/id/PingIdProperties.java
+  s_585e8db0324ab6::t_bb1203da37e931 1-53
+ping-common/ping-id-spring-boot-starter/src/main/java/com/ping/id/SnowflakeIdGenerator.java
+  s_585e8db0324ab6::t_4a7e96a816e952 1-118
+ping-common/ping-id-spring-boot-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  s_585e8db0324ab6::t_de74ba2864156c 1
+ping-common/ping-log-spring-boot-starter/README.en.md
+  s_585e8db0324ab6::t_b5acfcf6de2a31 1-168
+ping-common/ping-log-spring-boot-starter/README.md
+  s_585e8db0324ab6::t_9082d7d516bced 1-168
+ping-common/ping-log-spring-boot-starter/pom.xml
+  s_585e8db0324ab6::t_7e74f0a65a6de4 1-39
+ping-common/ping-log-spring-boot-starter/src/main/java/com/ping/log/config/BizTraceAutoConfiguration.java
+  s_585e8db0324ab6::t_a8772cb0de4ac4 1-42
+ping-common/ping-log-spring-boot-starter/src/main/java/com/ping/log/config/BizTraceFeignAutoConfiguration.java
+  s_585e8db0324ab6::t_e9d3a3b911c253 1-32
+ping-common/ping-log-spring-boot-starter/src/main/java/com/ping/log/trace/BizTraceIdFilter.java
+  s_585e8db0324ab6::t_f068c4b554f7f8 1-56
+ping-common/ping-log-spring-boot-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  s_585e8db0324ab6::t_a6944108f76077 1-2
+ping-common/ping-web-spring-boot-starter/README.en.md
+  s_585e8db0324ab6::t_d8a5232f9904df 1-288
+ping-common/ping-web-spring-boot-starter/README.md
+  s_585e8db0324ab6::t_091622d175902e 1-288
+ping-common/ping-web-spring-boot-starter/pom.xml
+  s_585e8db0324ab6::t_73bc871b8ba5b7 1-46
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/config/AnnotatedApiAutoConfiguration.java
+  s_585e8db0324ab6::t_e528b1bbe385e2 1-35
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/config/CommonSecurityAutoConfiguration.java
+  s_585e8db0324ab6::t_1432487f2e131c 1-134
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/exception/GlobalExceptionHandler.java
+  s_585e8db0324ab6::t_4c143470f4a286 1-84
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/security/AnnotatedApiScanner.java
+  s_585e8db0324ab6::t_7ffcababa595be 1-227
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/security/ApiAccessInterceptor.java
+  s_585e8db0324ab6::t_939c56974f6171 1-42
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/security/AppApiAccessInterceptor.java
+  s_585e8db0324ab6::t_278bf9dddcac47 1-40
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/security/AppTokenAuthFilter.java
+  s_585e8db0324ab6::t_5249d30761cf94 1-76
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/security/AuthorizationService.java
+  s_585e8db0324ab6::t_79062bce67486c 1-52
+ping-common/ping-web-spring-boot-starter/src/main/java/com/ping/web/security/SaTokenAuthFilter.java
+  s_585e8db0324ab6::t_b6b3cf51201283 1-129
+ping-common/ping-web-spring-boot-starter/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  s_585e8db0324ab6::t_3d033dba760c58 1-2
+ping-common/pom.xml
+  s_585e8db0324ab6::t_385b13691d4516 1-25
+ping-gateway/.dockerignore
+  s_585e8db0324ab6::t_070df8e8d8302e 1-13
+ping-gateway/.gitignore
+  s_585e8db0324ab6::t_f6f21f2d991d38 1-37
+ping-gateway/Dockerfile
+  s_585e8db0324ab6::t_2ac4299888150f 1-17
+ping-gateway/README.en.md
+  s_585e8db0324ab6::t_b4e27c97cf0907 1-83
+ping-gateway/README.md
+  s_585e8db0324ab6::t_893f27a3e4d288 1-83
+ping-gateway/gateway-service.sh
+  s_585e8db0324ab6::t_5fb8c793973214 1-10
+ping-gateway/gateway-service/README.en.md
+  s_585e8db0324ab6::t_c2fd3135119794 1-419
+ping-gateway/gateway-service/README.md
+  s_585e8db0324ab6::t_e1a9f4dc122d81 1-419
+ping-gateway/gateway-service/pom.xml
+  s_585e8db0324ab6::t_4f9a740356e707 1-167
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/GatewayApplication.java
+  s_585e8db0324ab6::t_8e4193581a6a3f 1-21
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/AnnotatedApiRegistry.java
+  s_585e8db0324ab6::t_bf3cd2db6efbb1 1-133
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/ApiPermissionRegistry.java
+  s_585e8db0324ab6::t_a5c076e6702908 1-143
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/CorsConfig.java
+  s_585e8db0324ab6::t_cbaea350bd4e62 1-33
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/GatewaySecurityProperties.java
+  s_585e8db0324ab6::t_6ffc41e21f12d4 1-32
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/PathNormalizeWebFilter.java
+  s_585e8db0324ab6::t_c5a6016099a234 1-77
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/PermitConfig.java
+  s_585e8db0324ab6::t_be566a44b622ac 1-20
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/SaStpInterfaceImpl.java
+  s_585e8db0324ab6::t_241d5f56c69edd 1-47
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/SaTokenConfigure.java
+  s_585e8db0324ab6::t_ff3f7754c97b79 1-192
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/ThreadPoolConfig.java
+  s_585e8db0324ab6::t_bbc156ae882fb4 1-40
+ping-gateway/gateway-service/src/main/java/com/ping/gateway/config/TraceIdGlobalFilter.java
+  s_585e8db0324ab6::t_a4d0a3b5bb1c33 1-54
+ping-gateway/gateway-service/src/main/resources/application.yml
+  s_585e8db0324ab6::t_e26a3cb069db37 1-32
+ping-gateway/gateway-service/src/main/resources/logback.xml
+  s_585e8db0324ab6::t_428a8a6b41b511 1-17
+ping-gateway/gateway-service/src/test/java/com/ping/gateway/config/ApiPermissionRegistryTest.java
+  s_585e8db0324ab6::t_001e1ead6ebb82 1-89
+ping-gateway/gateway-service/src/test/java/com/ping/gateway/config/PathNormalizeWebFilterTest.java
+  s_585e8db0324ab6::t_ed5c36916da2bd 1-43
+ping-gateway/pom.xml
+  s_585e8db0324ab6::t_d81b85409572f7 1-21
+ping-user/.dockerignore
+  s_585e8db0324ab6::t_187b6c6a50bc29 1-13
+ping-user/Dockerfile
+  s_585e8db0324ab6::t_3852c46595b619 1-17
+ping-user/README.en.md
+  s_585e8db0324ab6::t_12f90829bdae0d 1-588
+ping-user/README.md
+  s_585e8db0324ab6::t_730cb8bad9d488 1-588
+ping-user/pom.xml
+  s_585e8db0324ab6::t_d3ada7a6ac0a50 1-26
+ping-user/user-app/README.en.md
+  s_585e8db0324ab6::t_184d63a3dc4dbb 1-282
+ping-user/user-app/README.md
+  s_585e8db0324ab6::t_27598ee4b474fd 1-282
+ping-user/user-app/pom.xml
+  s_585e8db0324ab6::t_7475b2426fbf3b 1-86
+ping-user/user-app/src/main/java/com/ping/user/app/controller/AppAuthController.java
+  s_585e8db0324ab6::t_9acd9cf6d7149f 1-102
+ping-user/user-app/src/main/java/com/ping/user/app/entity/AppUser.java
+  s_585e8db0324ab6::t_610f85ccf64eb6 1-50
+ping-user/user-app/src/main/java/com/ping/user/app/entity/AppUserIdentity.java
+  s_585e8db0324ab6::t_18b3020e761238 1-39
+ping-user/user-app/src/main/java/com/ping/user/app/mapper/AppUserIdentityMapper.java
+  s_585e8db0324ab6::t_4069ca30e280fe 1-14
+ping-user/user-app/src/main/java/com/ping/user/app/mapper/AppUserMapper.java
+  s_585e8db0324ab6::t_71f8c89162e979 1-14
+ping-user/user-app/src/main/java/com/ping/user/app/model/AppLoginRequest.java
+  s_585e8db0324ab6::t_387974c19e178c 1-22
+ping-user/user-app/src/main/java/com/ping/user/app/model/AppLoginResponse.java
+  s_585e8db0324ab6::t_1ef0cac846e1ef 1-28
+ping-user/user-app/src/main/java/com/ping/user/app/model/AppRegisterRequest.java
+  s_585e8db0324ab6::t_7dc0f841fce9b1 1-25
+ping-user/user-app/src/main/java/com/ping/user/app/model/AppUserResponse.java
+  s_585e8db0324ab6::t_0fd6b7f1770672 1-28
+ping-user/user-app/src/main/java/com/ping/user/app/service/AppAuthService.java
+  s_585e8db0324ab6::t_0cb5b8821f38d3 1-46
+ping-user/user-app/src/main/java/com/ping/user/app/service/dubbo/AppUserDubboServiceImpl.java
+  s_585e8db0324ab6::t_7ca1ae81243546 1-40
+ping-user/user-app/src/main/java/com/ping/user/app/service/impl/AppAuthServiceImpl.java
+  s_585e8db0324ab6::t_68358162104600 1-103
+ping-user/user-auth/README.en.md
+  s_585e8db0324ab6::t_e0a5d6f7629fb8 1-193
+ping-user/user-auth/README.md
+  s_585e8db0324ab6::t_0ebabfea00f4b4 1-193
+ping-user/user-auth/pom.xml
+  s_585e8db0324ab6::t_ca4f8cbc6d5f01 1-39
+ping-user/user-auth/src/main/java/com/ping/user/auth/config/PingSecurityProperties.java
+  s_585e8db0324ab6::t_579d71b5ad3b43 1-50
+ping-user/user-auth/src/main/java/com/ping/user/auth/security/CaptchaService.java
+  s_585e8db0324ab6::t_ff4b85007e436c 1-33
+ping-user/user-auth/src/main/java/com/ping/user/auth/security/LoginAttemptService.java
+  s_585e8db0324ab6::t_18ca767990fbbb 1-40
+ping-user/user-auth/src/main/java/com/ping/user/auth/security/PasswordPolicy.java
+  s_585e8db0324ab6::t_bfe46726ee22b6 1-54
+ping-user/user-auth/src/main/java/com/ping/user/auth/security/impl/CaptchaServiceImpl.java
+  s_585e8db0324ab6::t_c2c9c75f166e35 1-65
+ping-user/user-auth/src/main/java/com/ping/user/auth/security/impl/LoginAttemptServiceImpl.java
+  s_585e8db0324ab6::t_f4aa8fc31fde90 1-96
+ping-user/user-auth/src/test/java/com/ping/user/auth/security/impl/LoginAttemptServiceImplTest.java
+  s_585e8db0324ab6::t_b10ea0ebe0dec8 1-128
+ping-user/user-client/.gitattributes
+  s_585e8db0324ab6::t_facab5ee6f3437 1-2
+ping-user/user-client/README.en.md
+  s_585e8db0324ab6::t_261ff56fd9f42d 1-255
+ping-user/user-client/README.md
+  s_585e8db0324ab6::t_122fc0bff128ed 1-255
+ping-user/user-client/pom.xml
+  s_585e8db0324ab6::t_f627844523d0e8 1-21
+ping-user/user-client/src/main/java/com/ping/user/client/dto/ApiPermissionRuleDTO.java
+  s_585e8db0324ab6::t_d746ee87039b9d 1-30
+ping-user/user-client/src/main/java/com/ping/user/client/dto/DataScopeDTO.java
+  s_585e8db0324ab6::t_e0cb526824246c 1-56
+ping-user/user-client/src/main/java/com/ping/user/client/dto/UserInfoDTO.java
+  s_585e8db0324ab6::t_663613779105af 1-31
+ping-user/user-client/src/main/java/com/ping/user/client/spi/AppUserDubboClient.java
+  s_585e8db0324ab6::t_e19069ae04f613 1-20
+ping-user/user-client/src/main/java/com/ping/user/client/spi/DataScopeDubboClient.java
+  s_585e8db0324ab6::t_545275af3754a9 1-23
+ping-user/user-client/src/main/java/com/ping/user/client/spi/PermissionDubboClient.java
+  s_585e8db0324ab6::t_f297aec751b30b 1-78
+ping-user/user-client/src/main/java/com/ping/user/client/spi/UserDubboClient.java
+  s_585e8db0324ab6::t_46384c38cafcb2 1-18
+ping-user/user-common/README.en.md
+  s_585e8db0324ab6::t_d448a7108f36d8 1-159
+ping-user/user-common/README.md
+  s_585e8db0324ab6::t_079b8827f39ea9 1-159
+ping-user/user-common/pom.xml
+  s_585e8db0324ab6::t_d6885845b22617 1-30
+ping-user/user-common/src/main/java/com/ping/user/common/constant/UserConstants.java
+  s_585e8db0324ab6::t_045ebe3d4d7b2b 1-65
+ping-user/user-common/src/main/java/com/ping/user/common/enums/UserType.java
+  s_585e8db0324ab6::t_01bf43c832208a 1-15
+ping-user/user-pc/README.en.md
+  s_585e8db0324ab6::t_0c26531615ce23 1-327
+ping-user/user-pc/README.md
+  s_585e8db0324ab6::t_1db3e7a6497241 1-326
+ping-user/user-pc/pom.xml
+  s_585e8db0324ab6::t_ca96987017991f 1-101
+ping-user/user-pc/src/main/java/com/ping/user/pc/annotation/Audit.java
+  s_585e8db0324ab6::t_8c081f2d6d6d57 1-22
+ping-user/user-pc/src/main/java/com/ping/user/pc/audit/AuditContext.java
+  s_585e8db0324ab6::t_8418130fd6d077 1-27
+ping-user/user-pc/src/main/java/com/ping/user/pc/config/ApiCoverageChecker.java
+  s_585e8db0324ab6::t_a3fd814036a8d1 1-138
+ping-user/user-pc/src/main/java/com/ping/user/pc/config/CurrentUser.java
+  s_585e8db0324ab6::t_8764867fe22fdf 1-74
+ping-user/user-pc/src/main/java/com/ping/user/pc/config/DbPermissionProvider.java
+  s_585e8db0324ab6::t_f3165df183bf6c 1-32
+ping-user/user-pc/src/main/java/com/ping/user/pc/config/WebMvcConfig.java
+  s_585e8db0324ab6::t_7e96f0ed06da82 1-24
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/ApiResourceController.java
+  s_585e8db0324ab6::t_4c3c64b6f11e48 1-93
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/AuthController.java
+  s_585e8db0324ab6::t_9475123baf9f9a 1-293
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/DeptController.java
+  s_585e8db0324ab6::t_7e3e10d3636994 1-93
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/LoginLogController.java
+  s_585e8db0324ab6::t_b87c8d26dff9d3 1-45
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/OnlineController.java
+  s_585e8db0324ab6::t_93f37fdc4f6089 1-47
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/OperationLogController.java
+  s_585e8db0324ab6::t_610ab1ddd98e7c 1-107
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/PermissionController.java
+  s_585e8db0324ab6::t_9ae17ecbd1a809 1-81
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/RoleController.java
+  s_585e8db0324ab6::t_4aa695ac533f7c 1-127
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/UserController.java
+  s_585e8db0324ab6::t_0bd2de6c5de49c 1-332
+ping-user/user-pc/src/main/java/com/ping/user/pc/controller/WhitelistController.java
+  s_585e8db0324ab6::t_5b032025db66c0 1-62
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysApiResource.java
+  s_585e8db0324ab6::t_0aab02d203b59d 1-44
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysApiWhitelist.java
+  s_585e8db0324ab6::t_3b85d34240f58d 1-34
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysDept.java
+  s_585e8db0324ab6::t_65ec9968dcee32 1-48
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysLoginLog.java
+  s_585e8db0324ab6::t_9b87b55cff621a 1-42
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysOperationLog.java
+  s_585e8db0324ab6::t_184e340293026b 1-48
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysPermission.java
+  s_585e8db0324ab6::t_b09b13ffb928e0 1-44
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysRole.java
+  s_585e8db0324ab6::t_c21dab12e72225 1-36
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysRoleDept.java
+  s_585e8db0324ab6::t_899b67f33ebd62 1-33
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysRolePermission.java
+  s_585e8db0324ab6::t_89fd0b38e4fdbe 1-23
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysUser.java
+  s_585e8db0324ab6::t_ad87ff1ee5b173 1-49
+ping-user/user-pc/src/main/java/com/ping/user/pc/entity/SysUserRole.java
+  s_585e8db0324ab6::t_88b5aef4ce0574 1-23
+ping-user/user-pc/src/main/java/com/ping/user/pc/interceptor/AuditInterceptor.java
+  s_585e8db0324ab6::t_7ba6e6d03dc7f3 1-56
+ping-user/user-pc/src/main/java/com/ping/user/pc/job/DataRetentionJob.java
+  s_585e8db0324ab6::t_e81076773f7c17 1-49
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysApiResourceMapper.java
+  s_585e8db0324ab6::t_41358baf91a1f2 1-14
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysApiWhitelistMapper.java
+  s_585e8db0324ab6::t_b43f44bd32b2f8 1-26
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysDeptMapper.java
+  s_585e8db0324ab6::t_ce775a73da8535 1-25
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysLoginLogMapper.java
+  s_585e8db0324ab6::t_e644cda5757153 1-14
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysOperationLogMapper.java
+  s_585e8db0324ab6::t_5916ebc5e1894b 1-14
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysPermissionMapper.java
+  s_585e8db0324ab6::t_b065aba5c03725 1-31
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysRoleDeptMapper.java
+  s_585e8db0324ab6::t_93fb8e3acb6b79 1-14
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysRoleMapper.java
+  s_585e8db0324ab6::t_01a365bcd5b464 1-27
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysRolePermissionMapper.java
+  s_585e8db0324ab6::t_b5af97b73fca52 1-34
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysUserMapper.java
+  s_585e8db0324ab6::t_013323fa4270fb 1-85
+ping-user/user-pc/src/main/java/com/ping/user/pc/mapper/SysUserRoleMapper.java
+  s_585e8db0324ab6::t_33d45ec1ad2c52 1-33
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/ApiResourceRequest.java
+  s_585e8db0324ab6::t_f41dce91895ea8 1-34
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/AuthConfigResponse.java
+  s_585e8db0324ab6::t_7adfd3d02c7643 1-18
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/CaptchaResponse.java
+  s_585e8db0324ab6::t_5ef966aab959e7 1-19
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/ChangePasswordRequest.java
+  s_585e8db0324ab6::t_d100075f57fed9 1-22
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/CurrentUserResponse.java
+  s_585e8db0324ab6::t_d90126c652df66 1-47
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/DeptRequest.java
+  s_585e8db0324ab6::t_84bed6b26dc6c9 1-39
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/LoginRequest.java
+  s_585e8db0324ab6::t_3d9dae987aa866 1-28
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/LoginResponse.java
+  s_585e8db0324ab6::t_1c041acfe54a78 1-34
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/MenuNode.java
+  s_585e8db0324ab6::t_7e6bb1694215ac 1-45
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/OnlineUserDTO.java
+  s_585e8db0324ab6::t_271dc1e6bf253b 1-31
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/PermissionRequest.java
+  s_585e8db0324ab6::t_b1baf95edcfe7a 1-41
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/RegisterRequest.java
+  s_585e8db0324ab6::t_41e07568338ae1 1-31
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/ResetPasswordRequest.java
+  s_585e8db0324ab6::t_2f0b9063ca6b79 1-18
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/RoleDetailResponse.java
+  s_585e8db0324ab6::t_1c575e08b33f55 1-25
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/RoleRequest.java
+  s_585e8db0324ab6::t_517dbf7140e82a 1-35
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/UserDetailResponse.java
+  s_585e8db0324ab6::t_a136212a54a88f 1-53
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/UserListItemDTO.java
+  s_585e8db0324ab6::t_0006d70714b59e 1-45
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/UserRequest.java
+  s_585e8db0324ab6::t_9858807b7bc956 1-38
+ping-user/user-pc/src/main/java/com/ping/user/pc/model/WhitelistRequest.java
+  s_585e8db0324ab6::t_f20579f773c664 1-29
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/ApiResourceService.java
+  s_585e8db0324ab6::t_98f07802ded57d 1-82
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/AuditLogService.java
+  s_585e8db0324ab6::t_8ac59c1d74e581 1-34
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/AuthService.java
+  s_585e8db0324ab6::t_1110c6cff6289d 1-56
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/DataScopeService.java
+  s_585e8db0324ab6::t_3912e91c6102a1 1-59
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/DeptService.java
+  s_585e8db0324ab6::t_35af09be72ae94 1-55
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/LoginLogService.java
+  s_585e8db0324ab6::t_f31d374f98781b 1-35
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/OnlineUserService.java
+  s_585e8db0324ab6::t_7440acab4c9054 1-28
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/OperationLogService.java
+  s_585e8db0324ab6::t_25e391ba67e284 1-40
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/PermissionCacheService.java
+  s_585e8db0324ab6::t_e17d058892c287 1-41
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/PermissionService.java
+  s_585e8db0324ab6::t_908607d7ec5dec 1-107
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/RoleService.java
+  s_585e8db0324ab6::t_7d3b0245a004c0 1-93
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/UserService.java
+  s_585e8db0324ab6::t_8d9b705601a667 1-88
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/WhitelistService.java
+  s_585e8db0324ab6::t_6f1e71938e2a70 1-46
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/ApiResourceServiceImpl.java
+  s_585e8db0324ab6::t_d6de45be3871bb 1-167
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/AuditLogServiceImpl.java
+  s_585e8db0324ab6::t_1644e8f7ad3ef7 1-119
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/AuthServiceImpl.java
+  s_585e8db0324ab6::t_2a486f4345b9df 1-132
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/DataScopeServiceImpl.java
+  s_585e8db0324ab6::t_b37e7c10b59585 1-168
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/DeptServiceImpl.java
+  s_585e8db0324ab6::t_982802084f6f6a 1-227
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/LoginLogServiceImpl.java
+  s_585e8db0324ab6::t_1c70972ba899e1 1-130
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/OnlineUserServiceImpl.java
+  s_585e8db0324ab6::t_a6770e9ed06d4b 1-133
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/OperationLogServiceImpl.java
+  s_585e8db0324ab6::t_e0c765781adbfe 1-96
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/PermissionCacheServiceImpl.java
+  s_585e8db0324ab6::t_71724157b164d5 1-132
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/PermissionServiceImpl.java
+  s_585e8db0324ab6::t_d446a182c8492d 1-378
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/RoleServiceImpl.java
+  s_585e8db0324ab6::t_6fe7913d4da342 1-275
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/UserServiceImpl.java
+  s_585e8db0324ab6::t_f338bc543a8e0b 1-343
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/WhitelistServiceImpl.java
+  s_585e8db0324ab6::t_5b7a4488c9a255 1-82
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/dubbo/DataScopeDubboServiceImpl.java
+  s_585e8db0324ab6::t_3e77fdff93363b 1-35
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/dubbo/PermissionDubboServiceImpl.java
+  s_585e8db0324ab6::t_61f8dcf55d4800 1-182
+ping-user/user-pc/src/main/java/com/ping/user/pc/service/impl/dubbo/UserDubboServiceImpl.java
+  s_585e8db0324ab6::t_a1de4c7fb2dc68 1-51
+ping-user/user-pc/src/main/resources/mapper/SysApiWhitelistMapper.xml
+  s_585e8db0324ab6::t_0af42a6e4ab49e 1-14
+ping-user/user-pc/src/main/resources/mapper/SysPermissionMapper.xml
+  s_585e8db0324ab6::t_67b98e354f1ab0 1-13
+ping-user/user-pc/src/main/resources/mapper/SysRoleMapper.xml
+  s_585e8db0324ab6::t_cf25b96d12d9e8 1-18
+ping-user/user-pc/src/main/resources/mapper/SysRolePermissionMapper.xml
+  s_585e8db0324ab6::t_6d64d390a74b0f 1-17
+ping-user/user-pc/src/main/resources/mapper/SysUserMapper.xml
+  s_585e8db0324ab6::t_96e5eda1e508d3 1-9
+ping-user/user-pc/src/main/resources/mapper/SysUserRoleMapper.xml
+  s_585e8db0324ab6::t_ba584fc7f5f9fd 1-13
+ping-user/user-pc/src/test/java/com/ping/user/pc/service/impl/DataScopeServiceImplTest.java
+  s_585e8db0324ab6::t_8c706dd27c9157 1-278
+ping-user/user-pc/src/test/java/com/ping/user/pc/service/impl/DeptServiceImplTest.java
+  s_585e8db0324ab6::t_c1d845e75e486e 1-278
+ping-user/user-pc/src/test/java/com/ping/user/pc/service/impl/PermissionServiceImplTest.java
+  s_585e8db0324ab6::t_5a8187aa7efff7 1-463
+ping-user/user-pc/src/test/java/com/ping/user/pc/service/impl/RoleServiceImplTest.java
+  s_585e8db0324ab6::t_d39cd81e34677b 1-331
+ping-user/user-pc/src/test/java/com/ping/user/pc/service/impl/UserServiceImplTest.java
+  s_585e8db0324ab6::t_3b4cccf76140c4 1-576
+ping-user/user-service.sh
+  s_585e8db0324ab6::t_b660e42f26a9a7 1-13
+ping-user/user-service/.gitattributes
+  s_585e8db0324ab6::t_cd30b8c3e50000 1-2
+ping-user/user-service/README.en.md
+  s_585e8db0324ab6::t_34c86e6ecc30ee 1-265
+ping-user/user-service/README.md
+  s_585e8db0324ab6::t_c841cc409dc5dc 1-265
+ping-user/user-service/pom.xml
+  s_585e8db0324ab6::t_279104525b2963 1-233
+ping-user/user-service/src/main/java/com/ping/user/UserServiceApplication.java
+  s_585e8db0324ab6::t_21d003508cefb7 1-22
+ping-user/user-service/src/main/java/com/ping/user/config/AsyncExecutorConfig.java
+  s_585e8db0324ab6::t_45f33cd7ff59e7 1-74
+ping-user/user-service/src/main/java/com/ping/user/config/DataScopeConfig.java
+  s_585e8db0324ab6::t_b19e33a04f4572 1-36
+ping-user/user-service/src/main/java/com/ping/user/config/MyBatisPlusConfig.java
+  s_585e8db0324ab6::t_8581d6aa773add 1-88
+ping-user/user-service/src/main/java/com/ping/user/config/SecurityConfig.java
+  s_585e8db0324ab6::t_7b4074d6e223b7 1-19
+ping-user/user-service/src/main/resources/application.yml
+  s_585e8db0324ab6::t_95d34d12e34f7f 1-32
+ping-user/user-service/src/main/resources/db/migration/V1__init_user_schema.sql
+  s_585e8db0324ab6::t_44b94447a2e986 1-255
+ping-user/user-service/src/main/resources/db/migration/V2__reset_lisa_password.sql
+  s_585e8db0324ab6::t_67287ee9ffc331 1-10
+ping-user/user-service/src/main/resources/db/migration/V3__grant_user_query_permissions.sql
+  s_585e8db0324ab6::t_aa779227c4a81a 1-17
+ping-user/user-service/src/main/resources/logback.xml
+  s_585e8db0324ab6::t_80fa005c53a7d6 1-17
+ping-user/user-service/src/test/java/com/ping/user/ModuleBoundaryTest.java
+  s_585e8db0324ab6::t_7d7b436b2e7539 1-75
+ping-user/user-service/src/test/java/com/ping/user/UserServiceApplicationTests.java
+  s_585e8db0324ab6::t_ed3d661ca009bf 1-21
+ping-user/user-service/src/test/java/com/ping/user/migration/UserSchemaMigrationIT.java
+  s_585e8db0324ab6::t_0a7a56cc8da15a 1-253
+ping-web/src/App.vue
+  s_585e8db0324ab6::t_d1e8e5ea9d0d6e 1-11
+ping-web/src/api/index.js
+  s_585e8db0324ab6::t_467259de89e055 1-190
+ping-web/src/api/request.js
+  s_585e8db0324ab6::t_d817a51e27fc21 1-62
+ping-web/src/components/layout/MainLayout.vue
+  s_585e8db0324ab6::t_2a58ef261c2876 1-245
+ping-web/src/components/layout/SidebarMenu.vue
+  s_585e8db0324ab6::t_26a17e455628d0 1-37
+ping-web/src/constants/permissions.js
+  s_585e8db0324ab6::t_4d834caf75a6c6 1-71
+ping-web/src/main.js
+  s_585e8db0324ab6::t_d33ad999d97298 1-32
+ping-web/src/router/index.js
+  s_585e8db0324ab6::t_08d1f2949128fa 1-160
+ping-web/src/stores/user.js
+  s_585e8db0324ab6::t_fdcc3f425b835e 1-85
+ping-web/src/utils/password.js
+  s_585e8db0324ab6::t_ce9807b9ae0cf4 1-30
+ping-web/src/views/ApiResources.vue
+  s_585e8db0324ab6::t_8be8a4405b38da 1-268
+ping-web/src/views/Depts.vue
+  s_585e8db0324ab6::t_7ae04e78db81cb 1-230
+ping-web/src/views/Forbidden.vue
+  s_585e8db0324ab6::t_e35cc7d8784c4a 1-50
+ping-web/src/views/Login.vue
+  s_585e8db0324ab6::t_d0ec9889a35831 1-169
+ping-web/src/views/LoginLogs.vue
+  s_585e8db0324ab6::t_eae3e2475a9061 1-81
+ping-web/src/views/NotFound.vue
+  s_585e8db0324ab6::t_ebd52b7451c3b5 1-33
+ping-web/src/views/OnlineUsers.vue
+  s_585e8db0324ab6::t_d7380640036afd 1-85
+ping-web/src/views/OperationLogs.vue
+  s_585e8db0324ab6::t_5476b0579a615e 1-109
+ping-web/src/views/Orders.vue
+  s_585e8db0324ab6::t_659a49c0cdb828 1-200
+ping-web/src/views/Permissions.vue
+  s_585e8db0324ab6::t_f5e4736a02ca32 1-358
+ping-web/src/views/Roles.vue
+  s_585e8db0324ab6::t_89e458326ec60c 1-344
+ping-web/src/views/Users.vue
+  s_585e8db0324ab6::t_4a070726cdd5ac 1-424
+ping-web/src/views/Whitelist.vue
+  s_585e8db0324ab6::t_e2b491fb5cba2e 1-191
+pom.xml
+  s_585e8db0324ab6::t_9820942203ec8a 1-469
+start.cmd
+  s_585e8db0324ab6::t_f4df848d8b2f64 1-5
+start.ps1
+  s_585e8db0324ab6::t_babd3760e6d0c4 1-268
+start.sh
+  s_585e8db0324ab6::t_568099b77ea11d 1-197
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4cbbb472e9a4809972be5583eef9fe1563b64819",
+  "prompts": {},
+  "sessions": {
+    "s_585e8db0324ab6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b421c203-5637-409d-ae1c-20ebaa3bd7cc",
+        "model": "unknown"
+      },
+      "human_author": "humdeef <humdeef@gmail.com>"
+    }
+  }
+}

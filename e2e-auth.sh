@@ -171,7 +171,7 @@ wait_ready() {
 command -v curl >/dev/null 2>&1 || die "缺少 curl"
 command -v python3 >/dev/null 2>&1 || die "缺少 python3（仅用于解析 JSON，无其他依赖）"
 
-BODY_FILE="$(mktemp -t ping-e2e)"
+BODY_FILE="$(mktemp /tmp/ping-e2e.XXXXXX)"
 trap 'rm -f "$BODY_FILE"' EXIT
 
 wait_ready

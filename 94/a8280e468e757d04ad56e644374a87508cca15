@@ -1,0 +1,19 @@
+e2e-auth.sh
+  s_585e8db0324ab6::t_5008916f7fb11f 174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "94a8280e468e757d04ad56e644374a87508cca15",
+  "prompts": {},
+  "sessions": {
+    "s_585e8db0324ab6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b421c203-5637-409d-ae1c-20ebaa3bd7cc",
+        "model": "unknown"
+      },
+      "human_author": "humdeef <humdeef@gmail.com>"
+    }
+  }
+}
